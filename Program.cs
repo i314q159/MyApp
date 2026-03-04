@@ -1,17 +1,24 @@
-﻿
-using Serilog;
+﻿using Serilog;
 
 namespace MyApp;
 
 class Program
 {
-    static void Main()
+    static void Main(string[] args)
     {
         Log.Logger = new LoggerConfiguration()
         .WriteTo.Console()
-        .WriteTo.File("log/a.log")
+        .WriteTo.File("log/log_.txt", rollingInterval: RollingInterval.Day)
         .CreateLogger();
 
-        Log.Information("Hello, Serilog!");
+        try
+        {
+            Log.Information("Hello, Serilog!");
+            // ... 其他业务代码
+        }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
     }
 }
