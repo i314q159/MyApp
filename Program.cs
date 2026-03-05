@@ -56,8 +56,6 @@ class Program
         }
         else
         {
-
-
             // Instantiate the joystick
             var joystick = new Joystick(directInput, joystickGuid);
 
